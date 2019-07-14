@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<style>
+#map { height: 700px; }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
+  width: 960px;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+  fill-opacity: .9;
+}
+
+.x.axis path {
+  display: none;
+}
+
+label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+</style>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="./exampleJson.js"></script>
+<script src="./bindPopupJson.js"></script>
+</head>
+<body>
+<H1>Taiwan Map</H1>
+
+
+<H3 id="pop_dbug"></H3>
+<div>
+location:
+<div id="location">ooo</div>
+  <div id="map" style="width: 1000px; height: 600px;position:relative"></div>  
+  
+</div>
+
+<script>
+    function mystyle(feature) {
+      return {weight:1,opacity:1,color:'#990000',fillOpacity:0.2,fillColor:'lightgray'};
+    }
+    function mystyle2(feature) {
+      return {weight:1,opacity:1,color:'#3d0099',fillOpacity:0.7,fillColor:'lightgray'};
+    }
+    var osmU   = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        osmAtt = 'OpenStreetMap',
+        osm    = L.tileLayer(osmU, {maxZoom: 19, attribution: osmAtt});
+    var map    = L.map('map').setView([25.176095, 121.451711], 12).addLayer(osm);    
+    
+    function highlightFeature(e) {
+        var layer = e.target;
+        layer.setStyle({
+            weight: 5,
+            color: '#666',
+            dashArray: '',
+            fillOpacity: 0.7
+         });
+
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+        }
+    }
+    function popup(e) {
+        var pop = e.target;
+        var test = pop.feature.properties.villagename;
+        geojson.bindPopup("<b>"+test+"</b>");
+        document.getElementById("location").innerHTML = test;
+    }
+
+    function resetHighlight(e) {
+        geojson.resetStyle(e.target);
+    }
+    
+    function onEachFeature(feature, layer) {
+        layer.on({
+            click: popup,
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+        });
+    }
+
+    var geojson = L.geoJson(districtData, {
+        style: mystyle,
+        onEachFeature: onEachFeature
+    }).addTo(map);    
+
+</script>
+</body>
+</html>

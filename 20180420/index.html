@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>Questionnaire</title>
+   <link rel="stylesheet" type="text/css" href="other.css">
+   <script type="text/javascript" src="another.js"></script>
+</head>
+<body onload="disable(1)">
+   <header>
+      <button onclick="chg_lan(1)">English</button>
+      <button onclick="chg_lan(2)">Chinese</button>  
+   </header>
+
+   <h4 id="start">Tell me when you're ready.</h4>
+   <button onclick="disable(2)">Ready</button>
+<!-- 1 -->
+   <fieldset>
+   <legend id="face0">Ask her/him to smile<br>
+   (Wait)Was the smile equal on both sides of her/his mouth？</legend>
+   <div class="container">
+   <input type="radio" id="face01" name="face" value="1" onclick="setFaceScore(1),disable(3)">
+   <label for="face01" id="face1">Normal smile</label><br>
+   <input type="radio" id="face02" name="face" value="2" onclick="setFaceScore(2),disable(3)">
+   <label for="face02" id="face2">Slight difference in smile (possible difference)</label><br>
+   <input type="radio" id="face03" name="face" value="3" onclick="setFaceScore(3),disable(3)">
+   <label for="face03" id="face3">Only on eside of mouth or face shows a smile (obvious difference)</label><br>
+   <input type="radio" id="face04" name="face" value="4" onclick="setFaceScore(4),disable(3)">
+   <label for="face04" id="face4">Cannot complete request (to smile)</label><br>
+   <div class="score" id="scoreF">0</div>
+   </fieldset>
+<!-- 2 -->
+   <fieldset>
+   <legend id="arm0">Ask her/him to raise both arms above her/his head.<br>
+   (Wait)What was s/he able to do？</legend>
+   <div class="container">
+   <input type="radio" id="arm01" name="arm" value="1" onclick="setArmScore(1),disable(3)">
+   <label for="arm01" id="arm1">Both arms raised equally</label><br>
+   <input type="radio" id="arm02" name="arm" value="2" onclick="setArmScore(2),disable(3)">
+   <label for="arm02" id="arm2">One arm higher than other (both raised, but unequally)</label><br>
+   <input type="radio" id="arm03"name="arm" value="3" onclick="setArmScore(3),disable(3)">
+   <label for="arm03" id="arm3">Only one arm raised</label><br>
+   <input type="radio" id="arm04" name="arm" value="4" onclick="setArmScore(4),disable(3)">
+   <label for="arm04" id="arm4">Cannot complete request at all</label><br>
+   <div class="score" id="scoreA">0</div>
+   </fieldset>
+<!-- 3 -->
+   <fieldset>
+   <legend id="speak0">Ask her/him to say,'The early bird catches the worm'<br>
+   (Wait)What was s/he able to repeat it correctly？<br>
+   (Clarity)Was it clurred, garbled, or not understandable？</legend>
+   <div class="container">
+   <input type="radio" id="speak01" name="speak" value="1" onclick="setSpeakScore(1)">
+   <label for="speak01" id="speak1">Said correctlly</label><br>
+   <input type="radio" id="speak02" name="speak" value="2" onclick="setSpeakScore(2)">
+   <label for="speak02" id="speak2">Slurred speech</label><br>
+   <input type="radio" id="speak03" name="speak" value="3" onclick="setSpeakScore(3)">
+   <label for="speak03" id="speak3">Garbled or not undersrandable speech</label><br>
+   <input type="radio" id="speak04" name="speak" value="4" onclick="setSpeakScore(4)">
+   <label for="speak04" id="speak4">Cannot complete request at all</label><br>
+   <div class="score" id="scoreS">0</div>
+   </fieldset>
+  <!-- 優化網頁,載入快 -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!-- totlaScore -->
+  <div class="totalscore" id="totalscore">0</div>
+</body>
+</html>
